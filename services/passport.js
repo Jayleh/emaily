@@ -20,7 +20,8 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: '/auth/google/callback' // route to send user after user grants permission
+      callbackURL: '/auth/google/callback', // route to send user after user grants permission
+      proxy: true // tells google strat to trust proxy and calc callbackURL correctly
     },
     async (accessToken, refreshToken, profile, done) => {
       const existingUser = await User.findOne({ googleId: profile.id });
