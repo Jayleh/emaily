@@ -10,12 +10,18 @@ module.exports = app => {
   );
 
   // taking the code from google to passport to turn it into a user profile
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google'),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
+  );
 
   // logout route, killing cookie
   app.get('/api/logout', (req, res) => {
     req.logout(); // passport attaches functions to the req
-    res.send(req.user);
+    res.redirect('/');
   });
 
   app.get('/api/current_user', (req, res) => {
