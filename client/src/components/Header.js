@@ -16,14 +16,14 @@ class Header extends Component {
       case false:
         return (
           <li>
-            <a href='/auth/google'>Login With Google</a>
+            <a href="/auth/google">Login With Google</a>
           </li>
         );
       default:
         return (
           <li>
-            <a href='#!' className='dropdown-trigger' data-target='dropdown1'>
-              <i className='material-icons'>account_circle</i>
+            <a href="#!" className="dropdown-trigger" data-target="dropdown1">
+              <i className="material-icons">account_circle</i>
             </a>
           </li>
         );
@@ -31,16 +31,18 @@ class Header extends Component {
   }
 
   renderDropdownMenu() {
-    return (
-      <ul id='dropdown1' className='dropdown-content'>
-        <li>
-          <Link to='/surveys'>Dashboard</Link>
-        </li>
-        <li>
-          <a href='/api/logout'>Logout</a>
-        </li>
-      </ul>
-    );
+    if (this.props.auth) {
+      return (
+        <ul id="dropdown1" className="dropdown-content">
+          <li>
+            <Link to="/surveys">Dashboard</Link>
+          </li>
+          <li>
+            <a href="/api/logout">Logout</a>
+          </li>
+        </ul>
+      );
+    }
   }
 
   render() {
@@ -48,11 +50,11 @@ class Header extends Component {
       <React.Fragment>
         {this.renderDropdownMenu()}
         <nav>
-          <div className='nav-wrapper'>
-            <Link to='/' className='left brand-logo'>
+          <div className="nav-wrapper">
+            <Link to="/" className="left brand-logo">
               Emailist
             </Link>
-            <ul className='right'>{this.renderContent()}</ul>
+            <ul className="right">{this.renderContent()}</ul>
           </div>
         </nav>
       </React.Fragment>
