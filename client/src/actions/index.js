@@ -6,3 +6,10 @@ export const fetchUser = () => async dispatch => {
 
   dispatch({ type: FETCH_USER, payload: response.data });
 };
+
+export const handleToken = token => async dispatch => {
+  const response = await server.post('/api/stripe', token);
+
+  // assume that we get back the user model from authReducer
+  dispatch({ type: FETCH_USER, payload: response.data });
+};

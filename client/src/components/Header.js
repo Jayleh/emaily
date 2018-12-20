@@ -2,6 +2,7 @@ import M from 'materialize-css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Payments from './Payments';
 
 class Header extends Component {
   componentDidUpdate() {
@@ -21,11 +22,16 @@ class Header extends Component {
         );
       default:
         return (
-          <li>
-            <a href="#!" className="dropdown-trigger" data-target="dropdown1">
-              <i className="material-icons">account_circle</i>
-            </a>
-          </li>
+          <React.Fragment>
+            <li>
+              <Payments />
+            </li>
+            <li>
+              <a href="#!" className="dropdown-trigger" data-target="dropdown1">
+                <i className="material-icons">account_circle</i>
+              </a>
+            </li>
+          </React.Fragment>
         );
     }
   }
