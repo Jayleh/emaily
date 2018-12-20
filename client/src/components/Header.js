@@ -1,8 +1,14 @@
+import M from 'materialize-css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
+  componentDidUpdate() {
+    const elems = document.querySelector('.dropdown-trigger');
+    M.Dropdown.init(elems);
+  }
+
   renderContent() {
     switch (this.props.auth) {
       case null:
@@ -15,30 +21,41 @@ class Header extends Component {
         );
       default:
         return (
-          <React.Fragment>
-            <li>
-              <Link to='/surveys'>
-                <i className='material-icons'>account_circle</i>
-              </Link>
-            </li>
-            <li>
-              <a href='/api/logout'>Logout</a>
-            </li>
-          </React.Fragment>
+          <li>
+            <a href='#!' className='dropdown-trigger' data-target='dropdown1'>
+              <i className='material-icons'>account_circle</i>
+            </a>
+          </li>
         );
     }
   }
 
+  renderDropdownMenu() {
+    return (
+      <ul id='dropdown1' className='dropdown-content'>
+        <li>
+          <Link to='/surveys'>Dashboard</Link>
+        </li>
+        <li>
+          <a href='/api/logout'>Logout</a>
+        </li>
+      </ul>
+    );
+  }
+
   render() {
     return (
-      <nav>
-        <div className='nav-wrapper'>
-          <Link to='/' className='left brand-logo'>
-            Emailist
-          </Link>
-          <ul className='right'>{this.renderContent()}</ul>
-        </div>
-      </nav>
+      <React.Fragment>
+        {this.renderDropdownMenu()}
+        <nav>
+          <div className='nav-wrapper'>
+            <Link to='/' className='left brand-logo'>
+              Emailist
+            </Link>
+            <ul className='right'>{this.renderContent()}</ul>
+          </div>
+        </nav>
+      </React.Fragment>
     );
   }
 }
