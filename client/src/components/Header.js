@@ -6,7 +6,7 @@ import Payments from './Payments';
 
 class Header extends Component {
   componentDidUpdate() {
-    const elems = document.querySelector('.dropdown-trigger');
+    const elems = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems);
   }
 
@@ -25,6 +25,9 @@ class Header extends Component {
           <React.Fragment>
             <li>
               <Payments />
+            </li>
+            <li style={{ margin: '0 10px' }}>
+              Credits: {this.props.auth.credits}
             </li>
             <li>
               <a href="#!" className="dropdown-trigger" data-target="dropdown1">
