@@ -3,5 +3,6 @@ module.exports = (req, res, next) => {
     return res.status(401).send({ error: 'You must log in!' });
   }
 
+  // pass it on to next middleware
   next();
 };
