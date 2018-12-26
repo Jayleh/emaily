@@ -13,3 +13,11 @@ export const handleToken = token => async dispatch => {
   // assume that we get back the user model from authReducer
   dispatch({ type: FETCH_USER, payload: response.data });
 };
+
+export const submitSurvey = (formValues, history) => async dispatch => {
+  const response = await server.post('/api/surveys', formValues);
+
+  dispatch({ type: FETCH_USER, payload: response.data });
+
+  history.push('/surveys');
+};
